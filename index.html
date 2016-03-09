@@ -3,13 +3,17 @@
 <head>
 	<meta charset="utf/8">
 	<title>Cliente API REST</title>
+
+	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
 	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 	<script>
-		JSON.parse=JSON.parse || function(str){
+		JSON.parse = JSON.parse || function(str){
 			if(str==="")
 				str='""';
 			eval("var p="+ str +";");
@@ -17,21 +21,23 @@
 		};
 
 		$(document).ready(function(){
+			
 			function getProductos(){
+				
 				$.ajax({
-					url:"http://localhost/APIRESTful/index.php/productos",
-					type:"get",
+					url:"http://localhost/APIRESTful/api.php/productos",
+					type:"GET",
 					success: function(response){
 						$.each(JSON.parse(response),function(i,index){
-							if(index.id.lenght){
+							if(index.id.length){
 								$(".table").append("<tr><td>"+ index.id +"</td>"+
-													   "<td>"+ index.name +"</td>"+
-													   "<td>"+ index.description +"</td>"+
-													   "<td>"+ index.price +"</td>"+
-													   "<td><span class='delete btn btn-danger' data-producto='"+index.id+"'>Borrar</span></td>"+
-													   "<td><span class='update btn btn-warning' data-producto='"+index.id+"'>Editar</span></td>"+
-													   "</tr>"
-													   );
+							   "<td>"+ index.name +"</td>"+
+							   "<td>"+ index.description +"</td>"+
+							   "<td>"+ index.price +"</td>"+
+							   "<td><span class='delete btn btn-danger' data-producto='"+index.id+"'>Borrar</span></td>"+
+							   "<td><span class='update btn btn-warning' data-producto='"+index.id+"'>Editar</span></td>"+
+							   "</tr>"
+							   );
 							}
 						});
 					}
@@ -59,7 +65,7 @@
 		</div>
 
 		<div class="col-lg-5 pull-right" >
-			<form action="http://localhost/APIRESTful/index.php/productos" method="post" data-producto=0>
+			<form action="http://localhost/APIRESTful/api.php/productos" method="post" data-producto=0>
 				Nombre:
 				<input type="text" id="name_form" class="form-control">
 				<br>
