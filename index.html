@@ -19,10 +19,21 @@
 		$(document).ready(function(){
 			function getProductos(){
 				$.ajax({
-					url:"http://localhost/clienteAPI/productos",
+					url:"http://localhost/APIRESTful/index.php/productos",
 					type:"get",
 					success: function(response){
-						
+						$.each(JSON.parse(response),function(i,index){
+							if(index.id.lenght){
+								$(".table").append("<tr><td>"+ index.id +"</td>"+
+													   "<td>"+ index.name +"</td>"+
+													   "<td>"+ index.description +"</td>"+
+													   "<td>"+ index.price +"</td>"+
+													   "<td><span class='delete btn btn-danger' data-producto='"+index.id+"'>Borrar</span></td>"+
+													   "<td><span class='update btn btn-warning' data-producto='"+index.id+"'>Editar</span></td>"+
+													   "</tr>"
+													   );
+							}
+						});
 					}
 				});
 			}
@@ -48,7 +59,7 @@
 		</div>
 
 		<div class="col-lg-5 pull-right" >
-			<form action="http://localhost/clienteAPI/productos" method="post" data-producto=0>
+			<form action="http://localhost/APIRESTful/index.php/productos" method="post" data-producto=0>
 				Nombre:
 				<input type="text" id="name_form" class="form-control">
 				<br>
