@@ -8,6 +8,28 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+	<script>
+		JSON.parse=JSON.parse || function(str){
+			if(str==="")
+				str='""';
+			eval("var p="+ str +";");
+			return p;
+		};
+
+		$(document).ready(function(){
+			function getProductos(){
+				$.ajax({
+					url:"http://localhost/clienteAPI/productos",
+					type:"get",
+					success: function(response){
+						
+					}
+				});
+			}
+			getProductos();
+		});
+	</script>
+
 
 
 <body>
@@ -26,7 +48,7 @@
 		</div>
 
 		<div class="col-lg-5 pull-right" >
-			<form action="http://localhost/clienteAPI/" method="post" data-producto=0>
+			<form action="http://localhost/clienteAPI/productos" method="post" data-producto=0>
 				Nombre:
 				<input type="text" id="name_form" class="form-control">
 				<br>
