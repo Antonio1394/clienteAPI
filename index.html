@@ -46,12 +46,15 @@
 			if($("#form").data("producto")===0){
 				$("form").submit(function(e){
 					e.preventDefault();
-						$.ajax({
+					$.ajax({
 						url:"http://localhost/APIRESTful/api.php/productos",
 						type:"POST",
+						data:{name:$("#name_form").val(), description:$("#description_form").val() , price:$("#price_form").val()},
 						success: function(response){
-							
-							}
+							$(".table").html("<tr><td>ID</td><td>Nombre</td><td>Descripcion</td><td>Precio</td><td>Eliminar</td><td>Editar</td></tr>");
+							getProductos();	
+							$("#form")[0].reset();
+						}
 						
 					});
 
