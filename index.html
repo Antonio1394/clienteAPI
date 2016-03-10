@@ -3,13 +3,9 @@
 <head>
 	<meta charset="utf/8">
 	<title>Cliente API REST</title>
-
-	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	
-
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 	<script>
@@ -44,6 +40,24 @@
 				});
 			}
 			getProductos();
+
+			//guardar
+
+			if($("#form").data("producto")===0){
+				$("form").submit(function(e){
+					e.preventDefault();
+						$.ajax({
+						url:"http://localhost/APIRESTful/api.php/productos",
+						type:"POST",
+						success: function(response){
+							
+							}
+						
+					});
+
+					return false;
+				});
+			}
 		});
 	</script>
 
@@ -65,7 +79,7 @@
 		</div>
 
 		<div class="col-lg-5 pull-right" >
-			<form action="http://localhost/APIRESTful/api.php/productos" method="post" data-producto=0>
+			<form  id="form" action="http://localhost/APIRESTful/api.php/productos" method="post" data-producto=0>
 				Nombre:
 				<input type="text" id="name_form" class="form-control">
 				<br>
