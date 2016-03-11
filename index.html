@@ -36,6 +36,17 @@
 							   );
 							}
 						});
+						//Borrar
+						$(".delete").unbind("click").clic(function(){
+							$.ajax({
+								url:"http://localhost/APIRESTful/api.php/productos",
+								type:"DELETE",
+								success: function(response){
+
+								}
+
+							});
+						});
 					}
 				});
 			}
