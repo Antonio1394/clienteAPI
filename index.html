@@ -37,12 +37,15 @@
 							}
 						});
 						//Borrar
-						$(".delete").unbind("click").clic(function(){
+						$(".delete").unbind("click").click(function(){
 							$.ajax({
-								url:"http://localhost/APIRESTful/api.php/productos",
+								url:"http://localhost/APIRESTful/api.php/productos/"+$(this).data("producto"),
 								type:"DELETE",
 								success: function(response){
-
+									$(".table").html("<tr><td>ID</td><td>Nombre</td><td>Descripcion</td><td>Precio</td><td>Eliminar</td><td>Editar</td></tr>");
+									getProductos();	
+									$("#form").attr("data-producto","0");
+									$("#form")[0].reset();
 								}
 
 							});
